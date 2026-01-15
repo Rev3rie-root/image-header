@@ -42,16 +42,26 @@ class ImageHeaderPlugin extends Plugin {
   const contentEl = viewContent.querySelector('.view-content');
   if (!contentEl) return;
 
-  const existingBanner =
-    contentEl.querySelector('.image-header-banner');
-  if (existingBanner) existingBanner.remove();
+  // Remove any existing banner wrapper to avoid duplicates
+  const existingWrapper = contentEl.querySelector('.image-header-wrapper');
+  if (existingWrapper) existingWrapper.remove();
 
+  // Create a wrapper for the banner
+  const bannerWrapper = document.createElement('div');
+  bannerWrapper.className = 'image-header-wrapper';
+
+  // Create the banner image
   const bannerEl = document.createElement('img');
   bannerEl.className = 'image-header-banner';
   bannerEl.src = imageUrl;
 
-  contentEl.insertBefore(bannerEl, contentEl.firstChild);
+  // Append image to wrapper
+  bannerWrapper.appendChild(bannerEl);
+
+  // Insert the wrapper at the very top of contentEl
+  contentEl.insertBefore(bannerWrapper, contentEl.firstChild);
 }
+
 
 
   onunload() {
