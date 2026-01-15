@@ -1,7 +1,7 @@
 {
   "id": "image-header",
   "name": "Image Header",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "minAppVersion": "1.11.0",
   "description": "Adds banner images to the top of notes",
   "author": "Quincy",
