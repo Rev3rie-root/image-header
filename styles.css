@@ -8,14 +8,19 @@
 /* Banner image styling */
 .image-header-banner {
   width: 100%;
-  height: 180px;          /* desktop height */
+  height: 180px; /* desktop height */
   object-fit: cover;
   display: block;
   border-radius: 0;
 }
 
-/* Slightly shorter on mobile */
+/* Slightly shorter and tighter on mobile */
 .is-mobile .image-header-banner {
   height: 120px;
   margin-bottom: 0.3rem;
+}
+
+/* Reduce extra padding in view-content on mobile */
+.is-mobile .view-content {
+  padding-top: 0.5rem; /* brings banner closer to title */
 }
