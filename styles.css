@@ -1,18 +1,21 @@
+/* Wrapper ensures the banner has its own block space */
+.image-header-wrapper {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem; /* space before title */
+}
+
+/* Banner image styling */
 .image-header-banner {
-  width: 100%;          
-  height: 180px;        
-  object-fit: cover;    
-  display: block;       
-  margin-bottom: 0.5rem; 
-  border-radius: 0;     
+  width: 100%;
+  height: 180px;          /* desktop height */
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
 }
 
+/* Slightly shorter on mobile */
 .is-mobile .image-header-banner {
-  height: 120px;       
-  margin-bottom: 0.3rem; 
-}
-
-.markdown-preview-view h1:first-of-type,
-.markdown-source-view h1:first-of-type {
-  margin-top: 0.2rem; 
+  height: 120px;
+  margin-bottom: 0.3rem;
 }
