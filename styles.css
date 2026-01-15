@@ -1,0 +1,10 @@
+.image-header-banner {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.is-mobile .image-header-banner {
+  height: 120px;
+}
