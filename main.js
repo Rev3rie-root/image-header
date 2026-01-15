@@ -53,24 +53,23 @@ insertBannerImage(imageUrl) {
 
   bannerWrapper.appendChild(bannerEl);
   
-  // Try multiple insertion points
+  // Find the view-content element
   const contentEl = viewContent.querySelector('.view-content');
-  const mdPreview = viewContent.querySelector('.markdown-preview-view');
-  const mdSource = viewContent.querySelector('.markdown-source-view');
+  if (!contentEl) return;
   
-  if (contentEl) {
-    // Insert as first child of view-content
-    contentEl.insertBefore(bannerWrapper, contentEl.firstChild);
-  } else if (mdPreview) {
-    mdPreview.insertBefore(bannerWrapper, mdPreview.firstChild);
-  } else if (mdSource) {
-    mdSource.insertBefore(bannerWrapper, mdSource.firstChild);
+  // Look for the properties/metadata section
+  const metadataEl = contentEl.querySelector('.metadata-container') ||
+                     contentEl.querySelector('.frontmatter-container') ||
+                     contentEl.querySelector('[data-type="properties"]');
+  
+  if (metadataEl) {
+    // Insert right after the properties
+    metadataEl.parentElement.insertBefore(bannerWrapper, metadataEl.nextSibling);
   } else {
-    // Last resort - just prepend to the whole container
-    viewContent.prepend(bannerWrapper);
+    // Fallback: insert at beginning
+    contentEl.insertBefore(bannerWrapper, contentEl.firstChild);
   }
 }
-
   onunload() {
     console.log('Image Header plugin unloaded');
     document.querySelectorAll('.image-header-wrapper').forEach(wrapper => wrapper.remove());
