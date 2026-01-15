@@ -39,14 +39,7 @@ insertBannerImage(imageUrl) {
 
   const viewContent = leaf.view.containerEl;
   
-  // Try to find the markdown preview or source view
-  let targetEl = viewContent.querySelector('.markdown-preview-view') || 
-                 viewContent.querySelector('.markdown-source-view') ||
-                 viewContent.querySelector('.view-content');
-  
-  if (!targetEl) return;
-
-  // Remove existing banner wrapper to avoid duplicates
+  // Remove existing banner first
   const existingWrapper = viewContent.querySelector('.image-header-wrapper');
   if (existingWrapper) existingWrapper.remove();
 
@@ -60,8 +53,22 @@ insertBannerImage(imageUrl) {
 
   bannerWrapper.appendChild(bannerEl);
   
-  // Insert at the very beginning of the markdown content
-  targetEl.insertBefore(bannerWrapper, targetEl.firstChild);
+  // Try multiple insertion points
+  const contentEl = viewContent.querySelector('.view-content');
+  const mdPreview = viewContent.querySelector('.markdown-preview-view');
+  const mdSource = viewContent.querySelector('.markdown-source-view');
+  
+  if (contentEl) {
+    // Insert as first child of view-content
+    contentEl.insertBefore(bannerWrapper, contentEl.firstChild);
+  } else if (mdPreview) {
+    mdPreview.insertBefore(bannerWrapper, mdPreview.firstChild);
+  } else if (mdSource) {
+    mdSource.insertBefore(bannerWrapper, mdSource.firstChild);
+  } else {
+    // Last resort - just prepend to the whole container
+    viewContent.prepend(bannerWrapper);
+  }
 }
 
   onunload() {
