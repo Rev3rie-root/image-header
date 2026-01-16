@@ -46,6 +46,8 @@ class ImageHeaderPlugin extends Plugin {
   // Create wrapper and banner
   const bannerWrapper = document.createElement('div');
   bannerWrapper.className = 'image-header-wrapper';
+  bannerWrapper.style.width = '100%';      // <-- Add this
+  bannerWrapper.style.display = 'block';   // <-- Add this
 
   const bannerEl = document.createElement('img');
   bannerEl.className = 'image-header-banner';
