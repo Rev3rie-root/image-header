@@ -1,36 +1,24 @@
-/* Base wrapper styling */
+/* Banner sits at the very top of the scrollable note body */
 .image-header-wrapper {
   width: 100%;
-  display: block;
-  margin: 0;
-  padding: 0;
+  height: 180px;          /* must match the JS constant */
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow: hidden;
-  position: relative;
 }
 
-/* Base banner image styling */
 .image-header-banner {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
-  margin: 0;
-  border-radius: 0;
 }
 
-/* Mobile-specific adjustments */
+/* Smaller banner on phones */
 @media (max-width: 480px) {
   .image-header-wrapper {
-    margin-top: 48px;
-  }
-  
-  .image-header-banner {
     height: 150px;
   }
-}
-
-/* Obsidian mobile class support */
-.is-mobile .image-header-banner {
-  height: 150px;
 }
