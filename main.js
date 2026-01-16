@@ -33,7 +33,7 @@ class ImageHeaderPlugin extends Plugin {
     this.insertBannerImage(imageUrl);
   }
 
-insertBannerImage(imageUrl) {
+  insertBannerImage(imageUrl) {
   const leaf = this.app.workspace.activeLeaf;
   if (!leaf) return;
 
@@ -53,21 +53,16 @@ insertBannerImage(imageUrl) {
 
   bannerWrapper.appendChild(bannerEl);
   
-  // Find the view-content element
+  // Find view-header and view-content
+  const viewHeader = viewContent.querySelector('.view-header');
   const contentEl = viewContent.querySelector('.view-content');
-  if (!contentEl) return;
   
-  // Look for the properties/metadata section
-  const metadataEl = contentEl.querySelector('.metadata-container') ||
-                     contentEl.querySelector('.frontmatter-container') ||
-                     contentEl.querySelector('[data-type="properties"]');
-  
-  if (metadataEl) {
-    // Insert right after the properties
-    metadataEl.parentElement.insertBefore(bannerWrapper, metadataEl.nextSibling);
-  } else {
-    // Fallback: insert at beginning
-    contentEl.insertBefore(bannerWrapper, contentEl.firstChild);
+  if (viewHeader && contentEl) {
+    // Insert between view-header and view-content
+    viewHeader.parentElement.insertBefore(bannerWrapper, contentEl);
+  } else if (contentEl) {
+    // Fallback: insert before view-content
+    contentEl.parentElement.insertBefore(bannerWrapper, contentEl);
   }
 }
   onunload() {
