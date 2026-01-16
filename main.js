@@ -33,7 +33,7 @@ class ImageHeaderPlugin extends Plugin {
     this.insertBannerImage(imageUrl);
   }
 
-  insertBannerImage(imageUrl) {
+insertBannerImage(imageUrl) {
   const leaf = this.app.workspace.activeLeaf;
   if (!leaf) return;
 
@@ -46,12 +46,15 @@ class ImageHeaderPlugin extends Plugin {
   // Create wrapper and banner
   const bannerWrapper = document.createElement('div');
   bannerWrapper.className = 'image-header-wrapper';
-  bannerWrapper.style.width = '100%';      // <-- Add this
-  bannerWrapper.style.display = 'block';   // <-- Add this
+  bannerWrapper.style.width = '100%';
+  bannerWrapper.style.display = 'block';
+  bannerWrapper.style.backgroundColor = 'red'; // TEMP: so we can see the wrapper
+  bannerWrapper.style.minHeight = '200px';     // TEMP: make sure it has space
 
   const bannerEl = document.createElement('img');
   bannerEl.className = 'image-header-banner';
   bannerEl.src = imageUrl;
+  bannerEl.style.border = '3px solid yellow'; // TEMP: so we can see the image
 
   bannerWrapper.appendChild(bannerEl);
   
@@ -60,10 +63,8 @@ class ImageHeaderPlugin extends Plugin {
   const contentEl = viewContent.querySelector('.view-content');
   
   if (viewHeader && contentEl) {
-    // Insert between view-header and view-content
     viewHeader.parentElement.insertBefore(bannerWrapper, contentEl);
   } else if (contentEl) {
-    // Fallback: insert before view-content
     contentEl.parentElement.insertBefore(bannerWrapper, contentEl);
   }
 }
