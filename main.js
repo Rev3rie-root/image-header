@@ -48,13 +48,19 @@ insertBannerImage(imageUrl) {
   bannerWrapper.className = 'image-header-wrapper';
   bannerWrapper.style.width = '100%';
   bannerWrapper.style.display = 'block';
-  bannerWrapper.style.backgroundColor = 'red'; // TEMP: so we can see the wrapper
-  bannerWrapper.style.minHeight = '200px';     // TEMP: make sure it has space
+  bannerWrapper.style.position = 'relative';
+  bannerWrapper.style.zIndex = '1';
+  bannerWrapper.style.margin = '0';
+  bannerWrapper.style.padding = '0';
 
   const bannerEl = document.createElement('img');
   bannerEl.className = 'image-header-banner';
   bannerEl.src = imageUrl;
-  bannerEl.style.border = '3px solid yellow'; // TEMP: so we can see the image
+  bannerEl.style.width = '100%';
+  bannerEl.style.height = '180px';
+  bannerEl.style.objectFit = 'cover';
+  bannerEl.style.display = 'block';
+  bannerEl.style.margin = '0';
 
   bannerWrapper.appendChild(bannerEl);
   
