@@ -42,19 +42,13 @@ insertBannerImage(imageUrl) {
   const existingWrapper = viewContent.querySelector('.image-header-wrapper');
   if (existingWrapper) existingWrapper.remove();
 
+  // CREATE the wrapper and banner elements (this was missing!)
   const bannerWrapper = document.createElement('div');
   bannerWrapper.className = 'image-header-wrapper';
-  bannerWrapper.style.width = '100%';
-  bannerWrapper.style.display = 'block';
-  bannerWrapper.style.marginTop = '48px'; // Push down below header (adjust this number)
 
   const bannerEl = document.createElement('img');
   bannerEl.className = 'image-header-banner';
   bannerEl.src = imageUrl;
-  bannerEl.style.width = '100%';
-  bannerEl.style.height = '180px';
-  bannerEl.style.objectFit = 'cover';
-  bannerEl.style.display = 'block';
 
   bannerWrapper.appendChild(bannerEl);
   
