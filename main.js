@@ -39,19 +39,14 @@ insertBannerImage(imageUrl) {
 
   const viewContent = leaf.view.containerEl;
   
-  // Remove existing banner first
   const existingWrapper = viewContent.querySelector('.image-header-wrapper');
   if (existingWrapper) existingWrapper.remove();
 
-  // Create wrapper and banner
   const bannerWrapper = document.createElement('div');
   bannerWrapper.className = 'image-header-wrapper';
   bannerWrapper.style.width = '100%';
   bannerWrapper.style.display = 'block';
-  bannerWrapper.style.position = 'relative';
-  bannerWrapper.style.zIndex = '1';
-  bannerWrapper.style.margin = '0';
-  bannerWrapper.style.padding = '0';
+  bannerWrapper.style.marginTop = '48px'; // Push down below header (adjust this number)
 
   const bannerEl = document.createElement('img');
   bannerEl.className = 'image-header-banner';
@@ -60,17 +55,11 @@ insertBannerImage(imageUrl) {
   bannerEl.style.height = '180px';
   bannerEl.style.objectFit = 'cover';
   bannerEl.style.display = 'block';
-  bannerEl.style.margin = '0';
 
   bannerWrapper.appendChild(bannerEl);
   
-  // Find view-header and view-content
-  const viewHeader = viewContent.querySelector('.view-header');
   const contentEl = viewContent.querySelector('.view-content');
-  
-  if (viewHeader && contentEl) {
-    viewHeader.parentElement.insertBefore(bannerWrapper, contentEl);
-  } else if (contentEl) {
+  if (contentEl) {
     contentEl.parentElement.insertBefore(bannerWrapper, contentEl);
   }
 }
